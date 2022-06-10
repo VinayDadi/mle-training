@@ -17,4 +17,7 @@ The following techniques have been used:
 ## To execute the script
 - Navigate to the remote local repository.
 - Create an environment using the `env.yml` file and activate it.
-- Run the command "python <script_name.py>"
+- Run the below command
+```
+python <script_name.py>
+```
