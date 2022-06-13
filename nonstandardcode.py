@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import os
+import os.path as path
 import tarfile
 from six.moves import urllib
 
@@ -21,11 +22,13 @@ def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
 
 import pandas as pd
 
+
 def load_housing_data(housing_path=HOUSING_PATH):
-    csv_path = os.path.join(housing_path, "housing.csv")
+    fetch_housing_data()
+    csv_path = path.join(path.join(os.getcwd(), housing_path), "housing.csv")
     return pd.read_csv(csv_path)
 
-housing = load_housing_data
+housing = load_housing_data()
 
 from sklearn.model_selection import train_test_split
 
