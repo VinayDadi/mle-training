@@ -15,9 +15,19 @@ The following techniques have been used:
  - All the above said modelling techniques are tried and evaluated. The final metric used to evaluate is mean squared error.
 
 ## To execute the script
-- Navigate to the remote local repository.
-- Create an environment using the `env.yml` file and activate it.
-- Run the below command
+- Create an environment from the provided `env.yml` file
 ```
-python <script_name.py>
+conda env create -f env.yml
+```
+
+> Note: The name of the environment is `mle-dev` which can be seen in the name section of `env.yml` file
+
+- Activate the environment once installation is sucessful
+```
+conda activate mle-dev
+```
+
+- Navigate to the directory where script is present and run the python script
+```
+python3 nonstandardcode.py
 ```
