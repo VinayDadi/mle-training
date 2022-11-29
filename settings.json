@@ -1,0 +1,24 @@
+{
+    // For viewing the settings in `json` format
+    "workbench.settings.editor": "json",
+    // Setting the python path to the python installed in the environment `mle-dev`
+    "python.defaultInterpreterPath": "~/miniconda3/envs/mle-dev/bin/python",
+    // Configuring isort and black
+    "python.sortImports.args": [
+        "--profile",
+        "black"
+    ],
+    // To run auto-formatter(black) everytime we save the file
+    "editor.formatOnSave": true,
+    // Organise imports everytime we save the file
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    // Configuring flake8 and black
+    "python.linting.flake8Args": [
+        "--max-line-length",
+        "88",
+        "--extend-ignore",
+        "E203"
+    ]
+}
