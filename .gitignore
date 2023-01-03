@@ -3,3 +3,16 @@
 
 # Byte-compiled
 *.pyc
+
+# Ignore dataset and model folders
+data
+artifacts
+
+# Documentation
+docs
+
+# ignore log files
+logs
+
+
+
