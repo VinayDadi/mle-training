@@ -7,7 +7,7 @@ import tarfile
 import numpy as np
 import pandas as pd
 from scipy.stats import randint
-from six.moves import urllib
+from six.moves import urllib  # type:ignore
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LinearRegression
@@ -21,7 +21,7 @@ from sklearn.model_selection import (
 from sklearn.tree import DecisionTreeRegressor
 
 DOWNLOAD_ROOT = "https://raw.githubusercontent.com/ageron/handson-ml/master/"
-HOUSING_PATH = os.path.join("datasets", "housing")
+HOUSING_PATH = os.path.join("data", "raw")
 HOUSING_URL = DOWNLOAD_ROOT + "datasets/housing/housing.tgz"
 
 
@@ -35,7 +35,7 @@ def fetch_housing_data(housing_url=HOUSING_URL, housing_path=HOUSING_PATH):
 
 
 def load_housing_data(housing_path=HOUSING_PATH):
-    fetch_housing_data()
+    # fetch_housing_data()
     csv_path = path.join(path.join(os.getcwd(), housing_path), "housing.csv")
     return pd.read_csv(csv_path)
 
@@ -77,7 +77,7 @@ compare_props["Rand. %error"] = (
 compare_props["Strat. %error"] = (
     100 * compare_props["Stratified"] / compare_props["Overall"] - 100
 )
-
+print(compare_props)
 for set_ in (strat_train_set, strat_test_set):
     set_.drop("income_cat", axis=1, inplace=True)
 

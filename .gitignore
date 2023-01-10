@@ -8,8 +8,6 @@
 data
 artifacts
 
-# Documentation
-docs
 
 # ignore log files
 logs
