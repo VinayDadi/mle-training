@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>housing_price package &mdash; Housing Price Prediction 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="src" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Housing Price Prediction
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">housing_price package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-housing_price.ingest_data">housing_price.ingest_data module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-housing_price.logger_functions">housing_price.logger_functions module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-housing_price.score">housing_price.score module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-housing_price.train">housing_price.train module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-housing_price">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Housing Price Prediction</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">src</a> &raquo;</li>
+        
+      <li>housing_price package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/housing_price.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="housing-price-package">
+<h1>housing_price package<a class="headerlink" href="#housing-price-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-housing_price.ingest_data">
+<span id="housing-price-ingest-data-module"></span><h2>housing_price.ingest_data module<a class="headerlink" href="#module-housing_price.ingest_data" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.ingest_data.create_new_cols">
+<span class="sig-prename descclassname"><span class="pre">housing_price.ingest_data.</span></span><span class="sig-name descname"><span class="pre">create_new_cols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/ingest_data.html#create_new_cols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.ingest_data.create_new_cols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds derived columns <cite>rooms_per_household</cite>, <cite>bedrooms_per_room</cite>, <cite>population_per_household</cite>, to the passed dataframe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>Dataframe</em>) – Housing dataframe</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the dataframe with extra derived columns</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.ingest_data.driver_data">
+<span class="sig-prename descclassname"><span class="pre">housing_price.ingest_data.</span></span><span class="sig-name descname"><span class="pre">driver_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/ingest_data.html#driver_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.ingest_data.driver_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Driver code to perform below mentioned tasks</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Download and extract raw housing dataset</p></li>
+<li><p>Splitting the dataset into test and train and saves them</p></li>
+</ol>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.ingest_data.fetch_extract_housing_data">
+<span class="sig-prename descclassname"><span class="pre">housing_price.ingest_data.</span></span><span class="sig-name descname"><span class="pre">fetch_extract_housing_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">housing_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://raw.githubusercontent.com/ageron/handson-ml/master/datasets/housing/housing.tgz'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">housing_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/ingest_data.html#fetch_extract_housing_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.ingest_data.fetch_extract_housing_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches and extracts data from the given url.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>housing_url</strong> (<em>str</em>) – URL of raw dataset</p></li>
+<li><p><strong>housing_path</strong> (<em>str</em>) – Root folder of the extracted dataset</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Extracts the housing dataset</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.ingest_data.initialize_parser">
+<span class="sig-prename descclassname"><span class="pre">housing_price.ingest_data.</span></span><span class="sig-name descname"><span class="pre">initialize_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/ingest_data.html#initialize_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.ingest_data.initialize_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses command-line arguments so they can used in the code.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.ingest_data.load_housing_data">
+<span class="sig-prename descclassname"><span class="pre">housing_price.ingest_data.</span></span><span class="sig-name descname"><span class="pre">load_housing_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">housing_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'data'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/ingest_data.html#load_housing_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.ingest_data.load_housing_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>housing_path</strong> (<em>str</em>) – Path of the dataset to load</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the housing dataframe</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.ingest_data.split_dataset">
+<span class="sig-prename descclassname"><span class="pre">housing_price.ingest_data.</span></span><span class="sig-name descname"><span class="pre">split_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/ingest_data.html#split_dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.ingest_data.split_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splitting the passed dataframe into test and train by maintaining proportionate ranges of target feature in them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>Dataframe</em>) – Housing dataframe with derived columns included</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns train and test array respectively</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array(s)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-housing_price.logger_functions">
+<span id="housing-price-logger-functions-module"></span><h2>housing_price.logger_functions module<a class="headerlink" href="#module-housing_price.logger_functions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.logger_functions.configure_logger">
+<span class="sig-prename descclassname"><span class="pre">housing_price.logger_functions.</span></span><span class="sig-name descname"><span class="pre">configure_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cfg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">console</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DEBUG'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/logger_functions.html#configure_logger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.logger_functions.configure_logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to setup configurations of logger through function.</p>
+<p>The individual arguments of <cite>log_file</cite>, <cite>console</cite>, <cite>log_level</cite> will overwrite the ones in cfg.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>logger</strong> – Predefined logger object if present. If None a ew logger object will be created from root.</p></li>
+<li><p><strong>cfg</strong> (<em>dict</em><em>(</em><em>)</em>) – Configuration of the logging to be implemented by default</p></li>
+<li><p><strong>log_file</strong> (<em>str</em>) – Path to the log file for logs to be stored</p></li>
+<li><p><strong>console</strong> (<em>bool</em>) – To include a console handler(logs printing in console)</p></li>
+<li><p><strong>log_level</strong> (<em>str</em>) – One of <cite>[“INFO”,”DEBUG”,”WARNING”,”ERROR”,”CRITICAL”]</cite>
+default - <cite>“DEBUG”</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>logging.Logger</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-housing_price.score">
+<span id="housing-price-score-module"></span><h2>housing_price.score module<a class="headerlink" href="#module-housing_price.score" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.score.driver_score">
+<span class="sig-prename descclassname"><span class="pre">housing_price.score.</span></span><span class="sig-name descname"><span class="pre">driver_score</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/score.html#driver_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.score.driver_score" title="Permalink to this definition">¶</a></dt>
+<dd><p>Driver code to run the score script</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Reads the train and test datasets</p></li>
+<li><p>Transform the datasets using saved transformer</p></li>
+<li><p>Create metrics dataframe for test and train transformed datasets for differerent metrics (‘mse’, ‘rmse’, ‘mae’)</p></li>
+</ol>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.score.initialize_parser">
+<span class="sig-prename descclassname"><span class="pre">housing_price.score.</span></span><span class="sig-name descname"><span class="pre">initialize_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/score.html#initialize_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.score.initialize_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses command-line arguments so they can used in the code.</p>
+</dd></dl>
+
+</section>
+<section id="module-housing_price.train">
+<span id="housing-price-train-module"></span><h2>housing_price.train module<a class="headerlink" href="#module-housing_price.train" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.train.create_metrics_df">
+<span class="sig-prename descclassname"><span class="pre">housing_price.train.</span></span><span class="sig-name descname"><span class="pre">create_metrics_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/train.html#create_metrics_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.train.create_metrics_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a metrics dataframe for all some algorithms</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>models</strong> (<em>list of str</em>) – List of models. Accepted strings: “lr”, “dt”, “rf”. Ignores remaining provided strings.</p></li>
+<li><p><strong>X</strong> (<em>array</em>) – Transformed feature array</p></li>
+<li><p><strong>y</strong> (<em>array</em>) – target array</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.train.df_X_y">
+<span class="sig-prename descclassname"><span class="pre">housing_price.train.</span></span><span class="sig-name descname"><span class="pre">df_X_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/train.html#df_X_y"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.train.df_X_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the input dataframe into feature dataframe and target array based on target column name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>Dataframe</em>) – Dataframe to be divided</p></li>
+<li><p><strong>target</strong> (<em>str</em>) – Name of the target column in the dataframe</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the divided feature dataframe and target array</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe, array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.train.driver_train">
+<span class="sig-prename descclassname"><span class="pre">housing_price.train.</span></span><span class="sig-name descname"><span class="pre">driver_train</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/train.html#driver_train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.train.driver_train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Driver code to run the train script</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Creates feature engineered dataframe and saves the feature transformer</p></li>
+<li><p>Run gridsearch on an estimator to get best model parameters and saves that model.</p></li>
+</ol>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.train.feature_engineering">
+<span class="sig-prename descclassname"><span class="pre">housing_price.train.</span></span><span class="sig-name descname"><span class="pre">feature_engineering</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'artifacts'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/train.html#feature_engineering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.train.feature_engineering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms feature dataframe</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Converts categorical columns into dummy variables</p></li>
+<li><p>Imputes missing values in numerical columns</p></li>
+</ol>
+</div></blockquote>
+<p>and saves the feature transformer in output_folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>Dataframe</em>) – Feature Dataframe</p></li>
+<li><p><strong>y</strong> (<em>Array</em>) – Target array</p></li>
+<li><p><strong>output_folder</strong> (<em>str</em>) – Path to save the feature transformer</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns transformed dataframe</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="housing_price.train.initialize_parser">
+<span class="sig-prename descclassname"><span class="pre">housing_price.train.</span></span><span class="sig-name descname"><span class="pre">initialize_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/train.html#initialize_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.train.initialize_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses command-line arguments so they can used in the code.</p>
+</dd></dl>
+
+</section>
+<section id="module-housing_price">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-housing_price" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="modules.html" class="btn btn-neutral float-left" title="src" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2023, Vinay.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
