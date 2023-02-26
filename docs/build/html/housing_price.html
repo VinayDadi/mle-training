@@ -179,23 +179,6 @@
 <section id="module-housing_price.ingest_data">
 <span id="housing-price-ingest-data-module"></span><h2>housing_price.ingest_data module<a class="headerlink" href="#module-housing_price.ingest_data" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="housing_price.ingest_data.create_new_cols">
-<span class="sig-prename descclassname"><span class="pre">housing_price.ingest_data.</span></span><span class="sig-name descname"><span class="pre">create_new_cols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/ingest_data.html#create_new_cols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.ingest_data.create_new_cols" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds derived columns <cite>rooms_per_household</cite>, <cite>bedrooms_per_room</cite>, <cite>population_per_household</cite>, to the passed dataframe.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>df</strong> (<em>Dataframe</em>) – Housing dataframe</p>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>Returns the dataframe with extra derived columns</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="housing_price.ingest_data.driver_data">
 <span class="sig-prename descclassname"><span class="pre">housing_price.ingest_data.</span></span><span class="sig-name descname"><span class="pre">driver_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/ingest_data.html#driver_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.ingest_data.driver_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Driver code to perform below mentioned tasks</p>
@@ -317,6 +300,52 @@ default - <cite>“DEBUG”</cite></p></li>
 </section>
 <section id="module-housing_price.train">
 <span id="housing-price-train-module"></span><h2>housing_price.train module<a class="headerlink" href="#module-housing_price.train" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="housing_price.train.CombinedAttributesAdder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">housing_price.train.</span></span><span class="sig-name descname"><span class="pre">CombinedAttributesAdder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">add_bedrooms_per_room</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cols_to_index_mapper</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'bedrooms':</span> <span class="pre">4,</span> <span class="pre">'households':</span> <span class="pre">6,</span> <span class="pre">'population':</span> <span class="pre">5,</span> <span class="pre">'rooms':</span> <span class="pre">3}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/train.html#CombinedAttributesAdder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.train.CombinedAttributesAdder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TransformerMixin</span></code></p>
+<p>Custom Transformer to create derived columns <cite>rooms_per_household</cite>, <cite>bedrooms_per_room</cite>, <cite>population_per_household</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>add_bedrooms_per_room</strong> (<em>Bool</em>) – Flag whether to add <cite>bedrooms_per_room</cite> to the array.</p></li>
+<li><p><strong>cols_to_index_mapper</strong> (<em>Dict</em>) – key-value pair where keys are columns and values are it’s indexes.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="housing_price.train.CombinedAttributesAdder.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/train.html#CombinedAttributesAdder.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.train.CombinedAttributesAdder.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit the transformer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array</em>) – Input array passed</p></li>
+<li><p><strong>y</strong> (<em>array</em>) – Input target array</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="housing_price.train.CombinedAttributesAdder.transform">
+<span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/train.html#CombinedAttributesAdder.transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.train.CombinedAttributesAdder.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>X</strong> (<em>array</em>) – Data to transform.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns transformed array with added derived columns</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="housing_price.train.create_metrics_df">
 <span class="sig-prename descclassname"><span class="pre">housing_price.train.</span></span><span class="sig-name descname"><span class="pre">create_metrics_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/housing_price/train.html#create_metrics_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#housing_price.train.create_metrics_df" title="Permalink to this definition">¶</a></dt>
@@ -375,6 +404,8 @@ default - <cite>“DEBUG”</cite></p></li>
 <div><ol class="arabic simple">
 <li><p>Converts categorical columns into dummy variables</p></li>
 <li><p>Imputes missing values in numerical columns</p></li>
+<li><p>Adds some derived numerical columns using custom transformer class.</p></li>
+<li><p>Scales the numerical columns.</p></li>
 </ol>
 </div></blockquote>
 <p>and saves the feature transformer in output_folder.</p>
