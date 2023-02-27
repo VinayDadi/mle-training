@@ -80,28 +80,6 @@ def load_housing_data(housing_path=DEFAULT_DATA_FOLDER):
     return pd.read_csv(csv_path)
 
 
-def create_new_cols(df):
-    """
-    Adds derived columns `rooms_per_household`, `bedrooms_per_room`, `population_per_household`, to the passed dataframe.
-
-    Parameters
-    ----------
-    df: Dataframe
-        Housing dataframe
-
-    Returns
-    -------
-    DataFrame
-        Returns the dataframe with extra derived columns
-    """  # noqa:E501
-    housing = df.copy()
-    housing["rooms_per_household"] = housing["total_rooms"] / housing["households"]
-    housing["bedrooms_per_room"] = housing["total_bedrooms"] / housing["total_rooms"]
-    housing["population_per_household"] = housing["population"] / housing["households"]
-    logger.info("Created some derived columns")
-    return housing
-
-
 def split_dataset(df):
     """
     Splitting the passed dataframe into test and train by maintaining proportionate ranges of target feature in them.
@@ -205,10 +183,8 @@ def driver_data():
     if len(os.listdir(DEFAULT_DATA_FOLDER + "/raw")) == 0:
         fetch_extract_housing_data()
         housing = load_housing_data()
-        housing = create_new_cols(housing)
     else:
         housing = load_housing_data()
-        housing = create_new_cols(housing)
 
     train_set, test_set = split_dataset(housing)
 

@@ -237,28 +237,6 @@
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="create_new_cols"><a class="viewcode-back" href="../../housing_price.html#housing_price.ingest_data.create_new_cols">[docs]</a><span class="k">def</span> <span class="nf">create_new_cols</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Adds derived columns `rooms_per_household`, `bedrooms_per_room`, `population_per_household`, to the passed dataframe.</span>
-
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    df: Dataframe</span>
-<span class="sd">        Housing dataframe</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    DataFrame</span>
-<span class="sd">        Returns the dataframe with extra derived columns</span>
-<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa:E501</span>
-    <span class="n">housing</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">housing</span><span class="p">[</span><span class="s2">&quot;rooms_per_household&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">housing</span><span class="p">[</span><span class="s2">&quot;total_rooms&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">housing</span><span class="p">[</span><span class="s2">&quot;households&quot;</span><span class="p">]</span>
-    <span class="n">housing</span><span class="p">[</span><span class="s2">&quot;bedrooms_per_room&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">housing</span><span class="p">[</span><span class="s2">&quot;total_bedrooms&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">housing</span><span class="p">[</span><span class="s2">&quot;total_rooms&quot;</span><span class="p">]</span>
-    <span class="n">housing</span><span class="p">[</span><span class="s2">&quot;population_per_household&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">housing</span><span class="p">[</span><span class="s2">&quot;population&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">housing</span><span class="p">[</span><span class="s2">&quot;households&quot;</span><span class="p">]</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Created some derived columns&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">housing</span></div>
-
-
 <div class="viewcode-block" id="split_dataset"><a class="viewcode-back" href="../../housing_price.html#housing_price.ingest_data.split_dataset">[docs]</a><span class="k">def</span> <span class="nf">split_dataset</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Splitting the passed dataframe into test and train by maintaining proportionate ranges of target feature in them.</span>
@@ -362,10 +340,8 @@
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">DEFAULT_DATA_FOLDER</span> <span class="o">+</span> <span class="s2">&quot;/raw&quot;</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">fetch_extract_housing_data</span><span class="p">()</span>
         <span class="n">housing</span> <span class="o">=</span> <span class="n">load_housing_data</span><span class="p">()</span>
-        <span class="n">housing</span> <span class="o">=</span> <span class="n">create_new_cols</span><span class="p">(</span><span class="n">housing</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">housing</span> <span class="o">=</span> <span class="n">load_housing_data</span><span class="p">()</span>
-        <span class="n">housing</span> <span class="o">=</span> <span class="n">create_new_cols</span><span class="p">(</span><span class="n">housing</span><span class="p">)</span>
 
     <span class="n">train_set</span><span class="p">,</span> <span class="n">test_set</span> <span class="o">=</span> <span class="n">split_dataset</span><span class="p">(</span><span class="n">housing</span><span class="p">)</span>
 

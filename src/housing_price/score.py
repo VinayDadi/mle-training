@@ -7,11 +7,11 @@ import numpy as np
 import pandas as pd
 from logger_functions import configure_logger
 from sklearn.metrics import mean_absolute_error, mean_squared_error
-from train import df_X_y
+from train import CombinedAttributesAdder, df_X_y  # noqa:F401
 
 DEFAULT_MODEL_FOLDER = "artifacts"
 DEFAULT_DATA_FOLDER = "data/processed"
-DEFAULT_OUTPUT_FOLDER = "notebooks/results"
+DEFAULT_OUTPUT_FOLDER = "results"
 
 logger = logging.getLogger(__name__)
 
