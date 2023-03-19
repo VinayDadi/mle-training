@@ -2,7 +2,7 @@
     // For viewing the settings in `json` format
     "workbench.settings.editor": "json",
     // Setting the python path to the python installed in the environment `mle-dev`
-    "python.defaultInterpreterPath": "~/miniconda3/envs/mle-dev/bin/python",
+    "python.defaultInterpreterPath": "~/miniconda3/envs/mle-dev-mlflow/bin/python",
     // Configuring isort and black
     "isort.args": [
         "--profile",
