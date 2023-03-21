@@ -23,7 +23,7 @@ if __name__ == "__main__":
         mlflow.log_param("parent", "yes")
         with mlflow.start_run(
             run_name="fetch_and_load_data",
-            description="Fetch the data from URL and Save it in Local and Load the data",
+            description="Fetch the data from URL and Save it in Local and Load the data",  # noqa:E501
             nested=True,
         ) as child_run1:
             fetch_extract_housing_data()

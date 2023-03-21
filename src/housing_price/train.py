@@ -3,6 +3,8 @@ import logging
 import os
 
 import joblib
+import mlflow
+import mlflow.sklearn
 import numpy as np
 import pandas as pd
 from logger_functions import configure_logger
@@ -21,6 +23,7 @@ DEFAULT_INPUT_FOLDER = "data/processed"
 DEFAULT_OUTPUT_FOLDER = "artifacts"
 
 logger = logging.getLogger(__name__)
+os.environ["MLFLOW_TRACKING_URI"] = "http://127.0.0.1:5000/"
 
 
 class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
@@ -380,30 +383,53 @@ def driver_train():
     """  # noqa:E501
 
     global logger
-    args = initialize_parser()
-    logger = configure_logger(
-        logger=logger,
-        log_file=args.log_path,
-        console=args.no_console_log,
-        log_level=args.log_level,
-    )
-    logger.info("Started train driver")
+    experiment_id = mlflow.create_experiment("Fe and Training")
 
-    logger.info("Started reading train dataset")
-    df = pd.read_csv(args.input_folder + "/train.csv")
-    X, y = df_X_y(df, "median_house_value")
+    with mlflow.start_run(
+        run_name="Parent_run",
+        experiment_id=experiment_id,
+        description="Performing fe on split data and training the model",
+    ):
+        args = initialize_parser()
+        logger = configure_logger(
+            logger=logger,
+            log_file=args.log_path,
+            console=args.no_console_log,
+            log_level=args.log_level,
+        )
+        logger.info("Started train driver")
 
-    if not os.path.exists(args.output_folder):
-        logger.info(f'Directory "{args.output_folder}" not found so creating the same')
-        os.makedirs(args.output_folder)
+        logger.info("Started reading train dataset")
+        df = pd.read_csv(args.input_folder + "/train.csv")
+        X, y = df_X_y(df, "median_house_value")
 
-    df = feature_engineering(X, y, args.output_folder)
+        if not os.path.exists(args.output_folder):
+            logger.info(
+                f'Directory "{args.output_folder}" not found so creating the same'
+            )
+            os.makedirs(args.output_folder)
 
-    X_trans = df.to_numpy()
+        df = feature_engineering(X, y, args.output_folder)
+        mlflow.log_artifact(args.output_folder + "/feature_transformer.joblib")
 
-    _ = create_metrics_df(["lr", "dt", "rf"], X_trans, y)
+        X_trans = df.to_numpy()
+        df.to_csv(args.input_folder + "/transformed_X.csv", index=False)
+        mlflow.log_artifact(args.input_folder + "/transformed_X.csv")
 
-    _ = run_grid_search(X_trans, y, args.output_folder)
+        metrics_df = create_metrics_df(["lr", "dt", "rf"], X_trans, y)
+
+        if not os.path.exists(args.output_folder + "/metrics"):
+            os.makedirs(args.output_folder + "/metrics")
+
+        metrics_df.reset_index().to_csv(
+            args.output_folder + "/metrics/different_model_metrics.csv", index=False
+        )
+        mlflow.log_artifact(args.output_folder + "/metrics/different_model_metrics.csv")
+
+        metrics_grid_search = run_grid_search(X_trans, y, args.output_folder)
+        mlflow.log_artifact(args.output_folder + "/final_model.joblib")
+        for metric in metrics_grid_search:
+            mlflow.log_metric(metric, metrics_grid_search[metric])
 
 
 if __name__ == "__main__":
