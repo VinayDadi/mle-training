@@ -6,6 +6,8 @@ import tarfile
 import urllib.request
 from urllib.error import URLError
 
+import mlflow
+import mlflow.sklearn
 import numpy as np
 import pandas as pd
 from logger_functions import configure_logger
@@ -19,6 +21,7 @@ DEFAULT_ROOT_PATH = "https://raw.githubusercontent.com/ageron/handson-ml/master/
 # HOUSING_URL = DOWNLOAD_ROOT + "datasets/housing/housing.tgz"
 
 logger = logging.getLogger(__name__)
+os.environ["MLFLOW_TRACKING_URI"] = "http://127.0.0.1:5000/"
 
 
 def fetch_extract_housing_data(
@@ -166,34 +169,46 @@ def driver_data():
 
     """
     global logger
-    args = initialize_parser()
-    # print(args)
-    logger = configure_logger(
-        logger=logger,
-        log_file=args.log_path,
-        console=args.no_console_log,
-        log_level=args.log_level,
-    )
-    if not os.path.exists(DEFAULT_DATA_FOLDER + "/raw"):
-        logger.info(
-            f'Directory "{DEFAULT_DATA_FOLDER + "/raw"}" not found so creating the same'
+    experiment_id = mlflow.create_experiment("Data Prep")
+
+    with mlflow.start_run(
+        run_name="Parent_run",
+        experiment_id=experiment_id,
+        description="Fetching Data and splitting the data and saving the split sets",
+    ):
+        mlflow.log_param("parent", "yes")
+        args = initialize_parser()
+        # print(args)
+        logger = configure_logger(
+            logger=logger,
+            log_file=args.log_path,
+            console=args.no_console_log,
+            log_level=args.log_level,
         )
-        os.makedirs(DEFAULT_DATA_FOLDER + "/raw")
+        if not os.path.exists(DEFAULT_DATA_FOLDER + "/raw"):
+            logger.info(
+                f'Directory "{DEFAULT_DATA_FOLDER + "/raw"}" not found so creating the same'  # noqa:E501
+            )
+            os.makedirs(DEFAULT_DATA_FOLDER + "/raw")
 
-    if len(os.listdir(DEFAULT_DATA_FOLDER + "/raw")) == 0:
-        fetch_extract_housing_data()
-        housing = load_housing_data()
-    else:
-        housing = load_housing_data()
+        if len(os.listdir(DEFAULT_DATA_FOLDER + "/raw")) == 0:
+            fetch_extract_housing_data()
+            housing = load_housing_data()
+        else:
+            housing = load_housing_data()
 
-    train_set, test_set = split_dataset(housing)
+        train_set, test_set = split_dataset(housing)
 
-    if not os.path.exists(args.output_folder):
-        logger.info(f"Directory '{args.output_folder}' not found so creating the same")
-        os.makedirs(args.output_folder)
+        if not os.path.exists(args.output_folder):
+            logger.info(
+                f"Directory '{args.output_folder}' not found so creating the same"
+            )
+            os.makedirs(args.output_folder)
 
-    train_set.to_csv(args.output_folder + "/train.csv", index=False)
-    test_set.to_csv(args.output_folder + "/test.csv", index=False)
+        train_set.to_csv(args.output_folder + "/train.csv", index=False)
+        test_set.to_csv(args.output_folder + "/test.csv", index=False)
+        mlflow.log_artifact(args.output_folder + "/train.csv")
+        mlflow.log_artifact(args.output_folder + "/test.csv")
 
 
 if __name__ == "__main__":

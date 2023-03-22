@@ -3,6 +3,8 @@ import logging
 import os
 
 import joblib
+import mlflow
+import mlflow.sklearn
 import numpy as np
 import pandas as pd
 from logger_functions import configure_logger
@@ -11,9 +13,10 @@ from train import CombinedAttributesAdder, df_X_y  # noqa:F401
 
 DEFAULT_MODEL_FOLDER = "artifacts"
 DEFAULT_DATA_FOLDER = "data/processed"
-DEFAULT_OUTPUT_FOLDER = "results"
+DEFAULT_OUTPUT_FOLDER = "artifacts/metrics"
 
 logger = logging.getLogger(__name__)
+os.environ["MLFLOW_TRACKING_URI"] = "http://127.0.0.1:5000/"
 
 
 def initialize_parser():
@@ -87,47 +90,63 @@ def driver_score():
     """  # noqa:E501
 
     global logger
-    args = initialize_parser()
-    logger = configure_logger(
-        logger=logger,
-        log_file=args.log_path,
-        console=args.no_console_log,
-        log_level=args.log_level,
-    )
-    logger.info("Starting Scoring")
+    experiment_id = mlflow.create_experiment("Scoring of trained model")
 
-    logger.info("Started reading train and test datasets")
-    train_df = pd.read_csv(args.input_data_folder + "/train.csv")
-    test_df = pd.read_csv(args.input_data_folder + "/test.csv")
+    with mlflow.start_run(
+        run_name="Parent_run",
+        experiment_id=experiment_id,
+        description="Scoring of trained model",
+    ):
+        args = initialize_parser()
+        logger = configure_logger(
+            logger=logger,
+            log_file=args.log_path,
+            console=args.no_console_log,
+            log_level=args.log_level,
+        )
+        logger.info("Starting Scoring")
 
-    X_train, y_train = df_X_y(train_df, "median_house_value")
-    X_test, y_test = df_X_y(test_df, "median_house_value")
+        logger.info("Started reading train and test datasets")
+        train_df = pd.read_csv(args.input_data_folder + "/train.csv")
+        test_df = pd.read_csv(args.input_data_folder + "/test.csv")
 
-    logger.info("Loading trained feature transformer")
-    feature_transformer = joblib.load(
-        args.input_model_folder + "/feature_transformer.joblib"
-    )
+        X_train, y_train = df_X_y(train_df, "median_house_value")
+        X_test, y_test = df_X_y(test_df, "median_house_value")
 
-    X_train_trans = feature_transformer.transform(X_train)
-    X_test_trans = feature_transformer.transform(X_test)
+        logger.info("Loading trained feature transformer")
+        feature_transformer = joblib.load(
+            args.input_model_folder + "/feature_transformer.joblib"
+        )
 
-    metrics_df = pd.DataFrame(columns=["mse", "rmse", "mae"])
+        X_train_trans = feature_transformer.transform(X_train)
+        X_test_trans = feature_transformer.transform(X_test)
 
-    logger.info("Loading trained model")
-    final_model = joblib.load(args.input_model_folder + "/final_model.joblib")
-    y_train_pred = final_model.predict(X_train_trans)
-    y_test_pred = final_model.predict(X_test_trans)
+        metrics_df = pd.DataFrame(columns=["mse", "rmse", "mae"])
 
-    metrics_df.loc["train", "mse"] = mean_squared_error(y_train, y_train_pred)
-    metrics_df.loc["train", "rmse"] = np.sqrt(mean_squared_error(y_train, y_train_pred))
-    metrics_df.loc["train", "mae"] = mean_absolute_error(y_train, y_train_pred)
-    metrics_df.loc["test", "mse"] = mean_squared_error(y_test, y_test_pred)
-    metrics_df.loc["test", "rmse"] = np.sqrt(mean_squared_error(y_test, y_test_pred))
-    metrics_df.loc["test", "mae"] = mean_absolute_error(y_test, y_test_pred)
-    logger.info(f"Metrics from the trained model: \n{metrics_df}")
+        logger.info("Loading trained model")
+        final_model = joblib.load(args.input_model_folder + "/final_model.joblib")
+        mlflow.log_artifact(args.input_model_folder + "/final_model.joblib")
 
-    metrics_df.to_csv(DEFAULT_OUTPUT_FOLDER + "/metrics.csv")
-    logger.info("Saved the metrics to a file")
+        y_train_pred = final_model.predict(X_train_trans)
+        y_test_pred = final_model.predict(X_test_trans)
+
+        metrics_df.loc["train", "mse"] = mean_squared_error(y_train, y_train_pred)
+        metrics_df.loc["train", "rmse"] = np.sqrt(
+            mean_squared_error(y_train, y_train_pred)
+        )
+        metrics_df.loc["train", "mae"] = mean_absolute_error(y_train, y_train_pred)
+        metrics_df.loc["test", "mse"] = mean_squared_error(y_test, y_test_pred)
+        metrics_df.loc["test", "rmse"] = np.sqrt(
+            mean_squared_error(y_test, y_test_pred)
+        )
+        metrics_df.loc["test", "mae"] = mean_absolute_error(y_test, y_test_pred)
+        logger.info(f"Metrics from the trained model: \n{metrics_df}")
+
+        metrics_df.reset_index().to_csv(
+            args.output_folder + "/test_metrics.csv", index=False
+        )
+        mlflow.log_artifact(args.output_folder + "/test_metrics.csv")
+        logger.info("Saved the metrics to a file")
 
 
 if __name__ == "__main__":
