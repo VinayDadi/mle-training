@@ -1,8 +1,8 @@
 # Median housing value prediction
 
-The housing data can be downloaded from https://raw.githubusercontent.com/ageron/handson-ml/master/. The script has codes to download the data. We have modelled the median house value on given housing data. 
+The housing data can be downloaded from https://raw.githubusercontent.com/ageron/handson-ml/master/. The script has codes to download the data. We have modelled the median house value on given housing data.
 
-The following techniques have been used: 
+The following techniques have been used:
 
  - Linear regression
  - Decision Tree
@@ -14,20 +14,41 @@ The following techniques have been used:
  - Multiple sampling techinuqies are evaluated. The data set is split into train and test.
  - All the above said modelling techniques are tried and evaluated. The final metric used to evaluate is mean squared error.
 
-## To execute the script
-- Create an environment from the provided `env.yml` file
+## User Installation
+
+- Create an environment using `deploy/conda/env.yml` file
 ```
-conda env create -f env.yml
+conda env create -f deploy/conda/env.yml
+```
+> Note: The name of the environment is `mle-dev-mlflow` which can be seen in the name section of `env.yml` file
+- Activate the environment once environment is created
+```
+conda activate mle-dev-mlflow
+```
+- To install `housing_price` package, run the below command:
+```
+python setup.py install
+```
+> **Note:** All the above code commands expects you to run them in the root folder of the project.
+
+## Testing the installation
+
+- After activating `mle-dev-mlflow` environment, run the following command
+```
+python tests/installation_tests/housing_price_test.py
+```
+If there is no error thrown up, then the package installation can be deemed successful.
+> **Note:** All the above code commands expects you to run them in the root folder of the project.
+
+## Execute Scripts
+
+- To run the scripts, use the below command:
+```
+python src/housing_price/<script_name>.py --args
+```
+- To get the arguments taken by each script, use the below command:
+```
+python src/housing_price/<script_name>.py --help
 ```
 
-> Note: The name of the environment is `mle-dev` which can be seen in the name section of `env.yml` file
-
-- Activate the environment once installation is sucessful
-```
-conda activate mle-dev
-```
-
-- Navigate to the directory where script is present and run the python script
-```
-python3 nonstandardcode.py
-```
+> **Note:** All the above code commands expects you to run them in the root folder of the project.
